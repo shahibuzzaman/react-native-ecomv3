@@ -18,7 +18,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Button, Card} from 'react-native-elements';
-import FeaturedProducts from './FeaturedProducts';
+import FeaturedProductsHome from './FeaturedProductsHome';
 
 import Carousel from './Carousel';
 
@@ -37,7 +37,7 @@ const HomeScreen = ({navigation}) => {
   const api_banner = 'http://tutofox.com/foodapp/api.json';
 
   const api_products_first_page =
-    'https://malamalexpress.com/wp-json/wc/v3/products?page=1&per_page=10&consumer_key=ck_af6dae0d921e12528b92964fb526317370642ec1&consumer_secret=cs_d172a15e6fa946ccc01890ca6adec67e3724e667';
+    'https://malamalexpress.com/wp-json/wc/v3/products?featured=true&consumer_key=ck_af6dae0d921e12528b92964fb526317370642ec1&consumer_secret=cs_d172a15e6fa946ccc01890ca6adec67e3724e667';
 
   useEffect(() => {
     fetch(api)
@@ -222,7 +222,8 @@ const HomeScreen = ({navigation}) => {
           renderItem={({item}) => (
             <View>
               {/* <ListItem title={`${item.title} `} subtitle={item.price} /> */}
-              <FeaturedProducts
+
+              <FeaturedProductsHome
                 item={item}
                 navigation={navigation}
                 data={productsFirstPage}
