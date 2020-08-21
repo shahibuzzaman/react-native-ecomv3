@@ -1,6 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
-import { postCart } from '../actions';
-import { connect } from 'react-redux';
+import React, {Component, useEffect, useState} from 'react';
+import {postCart} from '../actions';
+import {connect} from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,10 @@ import {
   ScrollView,
   FlatList,
   Button,
+  Dimensions,
 } from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 class DetailsScreen extends Component {
   state = {
@@ -28,24 +31,20 @@ class DetailsScreen extends Component {
     fetch(api)
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ data: json.product });
+        this.setState({data: json.product});
       })
       .catch((error) => console.error(error))
       .finally(() => {
-        this.setState({ isLoading: false });
+        this.setState({isLoading: false});
       });
   }
 
   render() {
     const styles = {
-      container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: 'white',
-      },
+      container: {},
       productImg: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
       },
       name: {
         fontSize: 28,
@@ -128,22 +127,24 @@ class DetailsScreen extends Component {
       },
     };
 
-    const { data, isLoading, itemId } = this.state;
+    const {data, isLoading, itemId} = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1, padding: 20, backgroundColor: 'white'}}>
         <ScrollView>
-          <View style={{ alignItems: 'center', marginHorizontal: 30 }}>
+          <View style={{alignItems: 'center'}}>
             <Image
-              style={styles.productImg}
+              style={{width: 300, height: 300, borderRadius: 10}}
               source={{
                 uri: data.featured_src,
               }}
             />
-            <Text style={styles.name}>{data.title}</Text>
-            <Text style={styles.price}>{data.price} ৳</Text>
-            <Text style={styles.description}>{data.description}</Text>
           </View>
+          <View>
+            <Text>{data.title}</Text>
+          </View>
+          <Text>{data.price} ৳</Text>
+          <Text>{data.short_description}</Text>
 
           <View style={styles.separator}></View>
           <View style={styles.addToCarContainer}>
@@ -161,4 +162,4 @@ class DetailsScreen extends Component {
   }
 }
 
-export default connect(null, { postCart })(DetailsScreen);
+export default connect(null, {postCart})(DetailsScreen);

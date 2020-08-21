@@ -198,6 +198,7 @@ class SubCategories extends Component {
             backgroundColor: 'white',
           }}>
           <FlatList
+            showsHorizontalScrollIndicator={false}
             horizontal={true}
             data={this.state.data}
             renderItem={renderItem}

@@ -15,9 +15,9 @@ import {
 } from 'react-native';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Swiper from 'react-native-swiper';
+import SearchBarr from '../SearchBar';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Button, Card} from 'react-native-elements';
+import {Button, Card, SearchBar} from 'react-native-elements';
 import FeaturedProductsHome from './FeaturedProductsHome';
 
 import Carousel from './Carousel';
